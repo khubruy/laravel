@@ -11,6 +11,7 @@ class Photo extends Model
 
     ];
 
+    public $public_path = 'C:/xampp/htdocs';
     protected $uploads = '/hacking/public/images/';
 
 

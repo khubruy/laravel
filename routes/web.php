@@ -19,8 +19,15 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('admin/users','AdminUsersController');
 
-Route::get('/admin', function () {
-    return view('layouts.admin');
+
+Route::group(['middleware'=>'admin'], function(){
+    Route::resource('admin/users','AdminUsersController');
+
+
+
+    Route::get('/admin', function () {
+        return view('layouts.admin');
+    });
+
 });

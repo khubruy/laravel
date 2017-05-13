@@ -4,6 +4,11 @@
 
     <h1>Users</h1>
 
+    @if(\Illuminate\Support\Facades\Session::has('deleted_user'))
+
+        <p>{{session('deleted_user')}}</p>
+    @endif
+
     <table class="table table-condensed">
         <thead>
         <tr>
