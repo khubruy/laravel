@@ -10,4 +10,11 @@ class Photo extends Model
         'file'
 
     ];
+
+    protected $uploads = '/hacking/public/images/';
+
+
+    public function getFileAttribute($photo){
+        return $this->uploads.$photo;
+    }
 }
