@@ -26,6 +26,9 @@ Route::group(['middleware'=>'admin'], function(){
 
     Route::resource('admin/posts','AdminPostsController');
 
+    Route::resource('admin/category','AdminCategoriesController');
+
+
 
     Route::get('/admin', function () {
         return view('layouts.admin');
