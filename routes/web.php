@@ -28,10 +28,12 @@ Route::group(['middleware'=>'admin'], function(){
 
     Route::resource('admin/category','AdminCategoriesController');
 
+    Route::resource('admin/media','AdminPhotosController');
 
 
     Route::get('/admin', function () {
         return view('layouts.admin');
     });
 
+    Route::get('/admin/media/create', 'AdminPhotosController@create')->name('media.create');
 });
