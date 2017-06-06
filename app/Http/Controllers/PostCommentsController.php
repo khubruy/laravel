@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class PostCommentsController extends Controller
 {
@@ -34,7 +37,23 @@ class PostCommentsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            $user = Auth::user();
+
+            $data = [
+                'post_id'=> $request->post_id,
+                'author'=> $user->name,
+                'email'=> $user->email,
+                'photo' => $user->photo->file,
+                'body'=>$request->body
+
+            ];
+            Comment::create($data);
+
+        Session::flash('comment_added','Your comment is awaiting approval');
+
+
+        return redirect()->route('home.post',1);
+
     }
 
     /**
