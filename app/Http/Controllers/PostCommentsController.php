@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comment;
+use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -53,7 +54,7 @@ class PostCommentsController extends Controller
         Session::flash('comment_added','Your comment is awaiting approval');
 
 
-        return redirect()->route('home.post',1);
+        return redirect()->route('home.post',$request->post_id);
 
     }
 
@@ -65,7 +66,11 @@ class PostCommentsController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        $comments = $post->comments;
+
+        return view('comments.show',compact('comments'));
     }
 
     /**

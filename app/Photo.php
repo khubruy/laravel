@@ -12,7 +12,7 @@ class Photo extends Model
     ];
 
     public $public_path = 'C:/xampp/htdocs';
-    protected $uploads = '/blog/laravel/public/images/';
+    protected $uploads = '/hacking/laravel/public/images/';
 
 
     public function getFileAttribute($photo){
