@@ -62,7 +62,18 @@
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="{{ url('/logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><i class="fa fa-sign-out fa-fw"></i>
+
+
+                            {!! Form::open(['method'=>'POST','action'=>'Auth\LoginController@logout','files'=>'true']) !!}
+
+                            <div class="form-group">
+                                {!! Form::submit('Logout', ['class'=>'btn btn-primary'] ) !!}
+                            </div>
+                            {!! Form::close() !!}
+
+
+
                     </li>
                 </ul>
                 <!-- /.dropdown-user -->

@@ -49,12 +49,14 @@ class PostCommentsController extends Controller
                 'body'=>$request->body
 
             ];
-            Comment::create($data);
+          $comment =  Comment::create($data);
+
+          $slug = $comment->post->slug;
 
         Session::flash('comment_added','Your comment is awaiting approval');
 
 
-        return redirect()->route('home.post',$request->post_id);
+        return redirect()->route('home.post',$slug);
 
     }
 

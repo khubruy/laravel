@@ -15,6 +15,7 @@
             <th>Email</th>
             <th>Body</th>
             <th>Post</th>
+            <th>Replies</th>
         </tr>
         </thead>
         <tbody>
@@ -24,7 +25,8 @@
                     <td>{{$comment->author}}</td>
                     <td>{{$comment->email}}</td>
                     <td>{{$comment->body}}</td>
-                    <td><a href="{{route('home.post',$comment->post_id)}}">View Post</a></td>
+                    <td><a href="{{route('home.post',$comment->post->slug)}}">View Post</a></td>
+                    <td><a href="{{route('replies.show',$comment->id)}}">View Replies</a></td>
                     <td>
                         @if($comment->is_active == 1)
                             {!! Form::open(['method'=>'PATCH','action'=>['PostCommentsController@update', $comment->id],'files'=>'true']) !!}

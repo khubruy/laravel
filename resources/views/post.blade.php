@@ -75,20 +75,24 @@
             {{$comment->body}}
 
 
-            @if(count($comment->replies) > 0)
+           @if(count($comment->replies) > 0)
                 @foreach($comment->replies as $reply)
         <!-- Nested Comment -->
+                            @if($reply->is_active == 1)
             <div class="media">
                 <a class="pull-left" href="#">
-                    <img class="media-object" src="http://placehold.it/64x64" alt="">
+                    <img height="50" class="media-object" src="{{$reply->photo}}" alt="">
                 </a>
                 <div class="media-body">
                     <h4 class="media-heading">{{$reply->author}}
-                        <small>{{$reply->created_at}}small>
+                        <small>{{$reply->created_at}}</small>
                     </h4>
                     {{$reply->body}}
                 </div>
-
+            </div>
+                            @endif
+                    @endforeach
+               @endif
                 {!! Form::open(['method'=>'POST','action'=>'CommentRepliesController@createReply','files'=>'true']) !!}
 
                 <input type="hidden" name="comment_id" value="{{$comment->id}}" />
@@ -103,9 +107,7 @@
                 </div>
                 {!! Form::close() !!}
 
-            </div>
-                @endforeach
-        @endif
+
             <!-- End Nested Comment -->
         </div>
     </div>
