@@ -38,4 +38,21 @@ class AdminPhotosController extends Controller
         return redirect()->route('media.index');
 
     }
+
+    public function deleteMedia(Request $request){
+
+
+        if(isset($request->single_delete)){
+           return $this->destroy($request->single_delete_id);
+        }
+
+
+
+
+        $photos = Photo::findOrFail($request->checkBoxArray);
+        foreach ($photos as $photo){
+            $photo->delete();
+        }
+        return redirect()->route('media.index');
+    }
 }

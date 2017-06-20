@@ -35,10 +35,13 @@ Route::group(['middleware'=>'admin'], function(){
         return view('layouts.admin');
     });
 
-    Route::get('/admin/media/create', 'AdminPhotosController@create')->name('media.create');
+   // Route::get('/admin/media/create', 'AdminPhotosController@create')->name('media.create');
 
     Route::resource('admin/comments','PostCommentsController');
     Route::resource('admin/comment/replies','CommentRepliesController');
+
+
+
 });
 
 Route::group(['middleware'=>'auth'], function() {
@@ -48,3 +51,5 @@ Route::group(['middleware'=>'auth'], function() {
 Route::get('/disqus', function () {
     return view('disqus');
 });
+
+Route::post('/delete/media','AdminPhotosController@deleteMedia')->name('bulkdeletemedia');
